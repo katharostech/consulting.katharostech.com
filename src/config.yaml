@@ -1,24 +1,24 @@
-title: Katharos Group
-description: >
-  Hello world.
+title: Katharos Technology
+description: Making awesome stuff.
 
 # Not used yet
 # heroText: Pure Innovation
 
 sections:
   - type: content
-    title: Katharos Group
+    title: Katharos Technology
     lead: >
-      We want to make <span class="text-primary">awesome stuff</span>.
+      <span class="text-primary">Pure Innovation</span>.
   - type: compatibility
     id: projects
-    title: Facets
+    title: Projects
     lead: >
-      There's a lot of stuff we want to get into at some point, but for now we're
-      focused on technology at
-      <a href="https://katharostech.com" class="text-primary">Katharos Technology</a>.
+      Things we're working on.
     lists:
       - items:
           - icon: logomark
-            title: Katharos Technology
-            url: https://katharostech.com
+            title: Chord 9
+            url: http://chord9.app
+          - icon: logomark
+            title: KTech Studio
+            url: https://ktech.studio
