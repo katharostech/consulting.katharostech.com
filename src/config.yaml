@@ -13,3 +13,4 @@ sections:
     title: Contact Us
     lead: Let's get it done.
     turnstileSiteKey: 0x4AAAAAABXiVbLyKqAQitnM
+    contactBackend: https://ktech-consulting-contact.deno.dev/contact

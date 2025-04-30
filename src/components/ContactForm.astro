@@ -6,6 +6,7 @@ interface Props {
   title: string;
   lead: string;
   turnstileSiteKey: string;
+  contactBackend: string;
 }
 const props = Astro.props;
 ---
@@ -19,25 +20,25 @@ const props = Astro.props;
     <label class="flex flex-col gap-2">
       Name
       <input
-        id="name"
-        required="true"
+        name="name"
         placeholder="Your Name"
         class="text-md block w-full rounded-lg border border-gray-200 bg-white px-4 py-3 dark:border-gray-700 dark:bg-slate-900"
       />
     </label>
     <label class="flex flex-col gap-2">
-      Email
+      <span>Email <span class="text-red-500">*</span></span>
       <input
-        id="name"
+        name="email"
+        type="email"
         required="true"
         placeholder="name@example.com"
         class="text-md block w-full rounded-lg border border-gray-200 bg-white px-4 py-3 dark:border-gray-700 dark:bg-slate-900"
       />
     </label>
     <label class="flex flex-col gap-2">
-      Message
+      <span>Message <span class="text-red-500">*</span></span>
       <textarea
-        id="name"
+        name="message"
         required="true"
         placeholder="You message..."
         class="text-md block w-full rounded-lg border border-gray-200 bg-white px-4 py-3 dark:border-gray-700 dark:bg-slate-900"
@@ -47,7 +48,9 @@ const props = Astro.props;
     <div class="checkbox mx-auto">
       <div
         class="cf-turnstile"
-        data-sitekey={props.turnstileSiteKey}
+        data-sitekey={import.meta.env.MODE == "production"
+          ? props.turnstileSiteKey
+          : "3x00000000000000000000FF"}
         data-theme="dark"
       >
       </div>
@@ -64,21 +67,18 @@ const props = Astro.props;
   src="https://challenges.cloudflare.com/turnstile/v0/api.js"
   defer></script>
 
-<script>
+<script define:vars={{ props }} is:inline>
   // Add event listener for form submission
   document.querySelector("form")?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target! as HTMLFormElement);
+    const formData = new FormData(e.target);
 
     // Call the contact webhook
     try {
-      const response = await fetch(
-        "https://wediy-life-contact.deno.dev/contact",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch(props.contactBackend, {
+        method: "POST",
+        body: formData,
+      });
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -94,9 +94,7 @@ const props = Astro.props;
       // Clear the form fields
       document
         .querySelectorAll("input,textarea")
-        .forEach(
-          (x) => ((x as HTMLInputElement | HTMLTextAreaElement).value = "")
-        );
+        .forEach((x) => (x.value = ""));
     } catch (error) {
       console.error("Error sending message:", error);
       window

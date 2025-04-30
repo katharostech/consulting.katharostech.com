@@ -47,6 +47,7 @@ declare module "~/config.yaml" {
     | {
         type: "contact-form";
         turnstileSiteKey: string;
+        contactBackend: string;
       }
   );
   const value: {
