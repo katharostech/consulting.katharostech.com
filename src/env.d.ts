@@ -16,15 +16,17 @@ declare module "~/config.yaml" {
     | {
         type: "compatibility";
         lists: {
-          title: string;
           items: CompatibilityItem[];
           url?: string;
         }[];
       }
     | {
         type: "features";
-        title?: string;
         features: FeatureItem[];
+      }
+      | {
+        type: 'contact-form';
+        turnstileSiteKey: string;
       }
   );
   const value: {

@@ -6,19 +6,10 @@ description: Making awesome stuff.
 
 sections:
   - type: content
-    title: Katharos Technology
+    title: Katharos Tech Consulting
     lead: >
-      <span class="text-primary">Pure Innovation</span>.
-  - type: compatibility
-    id: projects
-    title: Projects
-    lead: >
-      Things we're working on.
-    lists:
-      - items:
-          - icon: logomark
-            title: Chord 9
-            url: http://chord9.app
-          - icon: logomark
-            title: KTech Studio
-            url: https://ktech.studio
+      Contract us to bring your cloud architecture to the next level.
+  - type: contact-form
+    title: Contact Us
+    lead: Let's get it done.
+    turnstileSiteKey: 0x4AAAAAABXiVbLyKqAQitnM
