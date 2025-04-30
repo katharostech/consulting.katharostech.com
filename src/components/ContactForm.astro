@@ -8,6 +8,7 @@ interface Props {
   turnstileSiteKey: string;
   contactBackend: string;
 }
+const isProd = import.meta.env.PROD;
 const props = Astro.props;
 ---
 
@@ -45,29 +46,25 @@ const props = Astro.props;
       ></textarea>
     </label>
 
-    <div class="checkbox mx-auto">
-      <div
-        class="cf-turnstile"
-        data-sitekey={import.meta.env.MODE == "production"
-          ? props.turnstileSiteKey
-          : "3x00000000000000000000FF"}
-        data-theme="dark"
-      >
-      </div>
-    </div>
+    <div id="turnstile-challenge" class="mx-auto"></div>
 
-    <button class="rounded-2xl border border-gray-900 bg-green-500 text-black"
-      >Send</button
+    <button
+      class="rounded-2xl border border-gray-900 bg-green-500 text-black disabled:cursor-not-allowed disabled:saturate-50"
+      disabled>Send</button
     >
   </form>
 </ContentSection>
 
-<script
-  is:inline
-  src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-  defer></script>
+<script define:vars={{ props, isProd }} is:inline>
+  window.onloadTurnstileCallback = function () {
+    turnstile.render("#turnstile-challenge", {
+      sitekey: isProd ? props.turnstileSiteKey : "3x00000000000000000000FF",
+      callback: function (_) {
+        document.querySelector("button").disabled = false;
+      },
+    });
+  };
 
-<script define:vars={{ props }} is:inline>
   // Add event listener for form submission
   document.querySelector("form")?.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -95,6 +92,8 @@ const props = Astro.props;
       document
         .querySelectorAll("input,textarea")
         .forEach((x) => (x.value = ""));
+      window.turnstile.reset();
+      document.querySelector("button").disabled = true;
     } catch (error) {
       console.error("Error sending message:", error);
       window
@@ -106,3 +105,7 @@ const props = Astro.props;
     }
   });
 </script>
+
+<script
+  src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback"
+  defer></script>
