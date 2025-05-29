@@ -6,7 +6,7 @@ heroText: Kadima Solutions
 
 sections:
   - type: content
-    title: DevOps Transformation - Cloud Innovation
+    title: DevOps Transformation<br />Cloud Innovation
     lead: Solving technical challenges to keep your business moving forward
   - type: contact-form
     title: Contact Us

@@ -15,8 +15,8 @@ const { title, id } = Astro.props;
     <slot name="eyebrow" />
     <h2
       class="gradient-text text-center font-extrabold tracking-tight text-6xl"
+      set:html={title}
     >
-      {title}
     </h2>
   </div>
   <p class="max-w-xl text-center font-extrabold text-xl">

@@ -21,7 +21,7 @@ const sizes = "(min-width: 640px) 42vw, 67vw";
   <!-- <div id="splash-bg-fallback" class="absolute inset-0 hidden opacity-40">
     <HeroImage />
   </div> -->
-  <h2 class="text-8xl mt-12 font-bold ml-14">
+  <h2 class="text-8xl mb-[3em] font-bold ml-14">
     <!-- <Icon name="logomark" class="size-20 text-white md:size-32" /> -->
     <div set:html={props.heroText} />
   </h2>
@@ -49,10 +49,10 @@ const sizes = "(min-width: 640px) 42vw, 67vw";
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("/hero-image-colton-sturgeon-N4fdQbMJ0nI-unsplash.jpg");
+    background-image: url("/hero-image-iStock-1468398952-compressed.webp");
     background-size: cover;
-    background-position: left;
-    filter: saturate(0.7) brightness(0.6);
+    background-position: center;
+    filter: saturate(1.5) brightness(0.6);
   }
 
   @keyframes float {
