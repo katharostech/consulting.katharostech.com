@@ -28,6 +28,10 @@ declare module "~/config.yaml" {
   import type { FeatureItem } from "./types";
   type Section = { id: string; title: string; lead: string } & (
     | {
+        type: "splash";
+        heroText: string;
+      }
+    | {
         type: "content";
         icon?: string;
         links?: { label: string; url: string; icon?: string }[];
