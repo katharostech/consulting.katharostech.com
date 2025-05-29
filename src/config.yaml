@@ -11,5 +11,5 @@ sections:
   - type: contact-form
     title: Contact Us
     lead: Let's get it done
-    turnstileSiteKey: 0x4AAAAAABXiVbLyKqAQitnM
+    turnstileSiteKey: 0x4AAAAAABfEjQ0GMKXNduDd
     contactBackend: https://ktech-consulting-contact.deno.dev/contact
